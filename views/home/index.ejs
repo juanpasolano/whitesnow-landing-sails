@@ -1,7 +1,4 @@
 
-        <!--[if lt IE 8]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
         <!-- Add your site or application content here -->
         <section id="banner">
@@ -78,11 +75,11 @@
                     <h3>Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
                     <form action="">
                         <label for="">Nombre de la veterinaria</label>
-                        <input type="text" required>
+                        <input type="text" value="<%= (typeof user != 'undefined') ? user.name : '' %>" required>
                         <label for="">E-mail</label>
-                        <input type="email" required>
+                        <input type="email" value="<%= (typeof user != 'undefined') ? user.email : '' %>" required>
                         <label for="">Teléfono</label>
-                        <input type="number" required>
+                        <input type="number" value="<%= (typeof user != 'undefined') ? user.tel : '' %>" required>
                         <div class="tac">
                             <button type="submit" class="button">QUIERO TENERLO!</button>
                         </div>
