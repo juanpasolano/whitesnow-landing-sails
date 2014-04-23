@@ -35,8 +35,11 @@ module.exports.routes = {
   '/': {
     view: 'home/index'
   },
-  '/:id':{
+  '/invite/:id':{
     controller: 'HomeController'
+  },
+  '/terms':{
+    view: 'terms'
   }
 
   /*
