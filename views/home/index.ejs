@@ -64,25 +64,51 @@
 
         <section>
             <div class="row">
-                <div class="column large-10 medium-10 large-centered medium-centered">
+                <div class="column large-10 medium-10 large-centered medium-centered tac">
                     <h2 class="tac">Cuanto cuesta?</h2>
-                    <p>Vet Heroes saldrá al mercado por un precio de aproximadamente 20 dólares al mes.</p>
-                    <p>Pero <strong>por haber sido invitado</strong> a nuestro pre-lanzamiento. Te daremos <strong>3 meses gratis</strong> de todo nuestros servicios.</p>
+                    <p>Vet Heroes saldrá al mercado por un precio de aproximadamente <strong>20 dólares al mes</strong>.</p>
+                    <% if(typeof  invite != 'undefined'){%>
+                        <p>Pero <strong>por haber sido invitado</strong> a nuestro pre-lanzamiento. Te daremos <strong>6 meses gratis</strong> de todo nuestros servicios.</p>
+                    <%}else{%>
+                        <p>Pero <strong>si pides una invitacion</strong> podrias tener los primeros <strong>6 meses gratis</strong></p>
+                    <%}%>
                 </div>
             </div>
             <div class="row">
                 <div class="column large-8 medium-8 large-centered medium-centered form-row">
-                    <h3>Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
+                    <% if(typeof  invite != 'undefined'){%>
+                        <h3>Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
+                    <%}else{%>
+                        <h3>Si quieres pedir una invitación por favor llena este pequeño formulario.</h3>
+                    <%}%>
                     <form action="">
                         <label for="">Nombre de la veterinaria</label>
-                        <input type="text" value="<%= (typeof user != 'undefined') ? user.name : '' %>" required>
+                        <input type="text" id="#formName"
+                            value="<%= (typeof invite != 'undefined') ? invite.name : '' %>"
+                        required>
+
+                        <label for="">Persona de contacto</label>
+                        <input type="text" id="#formContact"
+                            value="<%= (typeof invite != 'undefined') ? invite.contact : '' %>"
+                        required>
+
                         <label for="">E-mail</label>
-                        <input type="email" value="<%= (typeof user != 'undefined') ? user.email : '' %>" required>
+                        <input type="email" id="#formEmail"
+                                value="<%= (typeof invite != 'undefined') ? invite.email : '' %>"
+                        required>
+
                         <label for="">Teléfono</label>
-                        <input type="number" value="<%= (typeof user != 'undefined') ? user.tel : '' %>" required>
+                        <input type="number" id="#formTel"
+                            value="<%= (typeof invite != 'undefined') ? invite.tel : '' %>"
+                        required>
+
                         <div class="tac">
-                            <button type="submit" class="button">QUIERO TENERLO!</button> <br>
-                            <small>* Haciendo click en este botón, estas aceptando nuestras <a href="/terms">Políticas de privacidad</a></small>
+                            <% if(typeof  invite != 'undefined'){%>
+                                <button type="submit" class="button">QUIERO PREINSCRIBIRME!</button>
+                            <%}else{%>
+                                <button type="submit" class="button">QUIERO ESTAR EN LA LISTA!</button>
+                            <%}%>
+                            <br><small>* Haciendo click en este botón, estas aceptando nuestras <a href="/terms">Políticas de privacidad</a></small>
                         </div>
                     </form>
                 </div>

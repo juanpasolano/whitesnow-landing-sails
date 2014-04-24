@@ -19,8 +19,8 @@ module.exports = {
 	index: function(req,res){
 		var id = req.param('id');
 		var token = req.param('token');
-		Invites.findOne().where({ id: id, token: token }).done(function(err, user) {
-			res.view('home/index',{user:user});
+		Invites.findOne().where({ id: id, token: token }).done(function(err, invite) {
+			res.view('home/index',{invite:invite});
 		});
 	},
   /**

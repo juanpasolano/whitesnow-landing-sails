@@ -11,6 +11,7 @@ module.exports = {
   attributes: {
 
 		name: 'string',
+		contact: 'string',
 		email: 'email',
 		tel: 'string',
 		token: 'string',
