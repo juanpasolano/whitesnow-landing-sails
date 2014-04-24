@@ -18,7 +18,8 @@
 module.exports = {
 	index: function(req,res){
 		var id = req.param('id');
-		Users.findOne(id).done(function(err, user) {
+		var token = req.param('token');
+		Invites.findOne().where({ id: id, token: token }).done(function(err, user) {
 			res.view('home/index',{user:user});
 		});
 	},

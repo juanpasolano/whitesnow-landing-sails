@@ -35,7 +35,7 @@ module.exports.routes = {
   '/': {
     view: 'home/index'
   },
-  '/invite/:id':{
+  '/invite/:id/:token':{
     controller: 'HomeController'
   },
   '/terms':{
