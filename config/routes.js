@@ -35,19 +35,23 @@ module.exports.routes = {
   '/': {
     view: 'home/index'
   },
-  '/invite/:id/:token':{
+  '/invite/get/:id/:token':{
     view: 'home/index'
   },
   '/invite/getsafe/:id/:token':{
     controller: 'HomeController',
     action: 'index'
   },
-  '/terms':{
-    view: 'terms'
-  },
-  '/request':{
+  '/invite/request':{
     controller: 'HomeController',
     action: 'request'
+  },
+  '/invite/confirm/:id':{
+    controller: 'HomeController',
+    action: 'confirm'
+  },
+  '/terms':{
+    view: 'terms'
   }
 
   /*

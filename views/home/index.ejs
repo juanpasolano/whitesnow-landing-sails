@@ -71,22 +71,23 @@
                     <p ng-show="!isInvited">Pero <strong>si pides una invitación</strong> podrias tener los primeros <strong>6 meses gratis</strong></p>
                 </div>
             </div>
+
             <div class="row">
-                <div class="column large-8 medium-8 large-centered medium-centered form-row">
-                    <h3 ng-show="isInvited">Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
-                    <h3 ng-show="!isInvited">Si quieres pedir una invitación por favor llena este pequeño formulario.</h3>
+                <div class="column large-8 medium-8 large-centered medium-centered form-row" ng-class="{thanks : !formActive}">
+                    <h3 ng-show="isInvited && formActive" class="tac">Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
+                    <h3 ng-show="!isInvited && formActive" class="tac">Si quieres pedir una invitación por favor llena este pequeño formulario.</h3>
                     <form action="" ng-submit="sendForm()" ng-show="formActive">
                         <label for="">Nombre de la veterinaria</label>
-                        <input type="text" ng-model="inviteInfo.name" required>
+                        <input type="text" ng-model="inviteInfo.name">
 
                         <label for="">Persona de contacto</label>
-                        <input type="text" ng-model="inviteInfo.contact" required>
+                        <input type="text" ng-model="inviteInfo.contact">
 
                         <label for="">E-mail</label>
-                        <input type="email" ng-model="inviteInfo.email" required>
+                        <input type="email" ng-model="inviteInfo.email">
 
                         <label for="">Teléfono</label>
-                        <input type="number" ng-model="inviteInfo.tel" required>
+                        <input type="number" ng-model="inviteInfo.tel">
 
                         <div class="tac">
                             <button ng-show="isInvited" type="submit" class="button">QUIERO PREINSCRIBIRME!</button>
@@ -94,10 +95,20 @@
                             <br><small>* Haciendo click en este botón, estas aceptando nuestras <a href="/terms">Políticas de privacidad</a></small>
                         </div>
                     </form>
-                    <div ng-hide="formActive">
-                        <p ng-show="isInvited">Tu invitación ha sido confirmada. Bienvenido a la familia Vet Heroes. Pronto estaremos en contacto contigo</p>
-                        <p ng-show="!isInvited">Tu petición ha sido enviada. Pronto nos contactaremo contigo para confirmate. Muchas gracias por participar y bienvenido a la familia Vet Heroes</p>
+                    <div class="thanks-msg" ng-hide="formActive">
+                        <div ng-show="isInvited" class="tac">
+                        <i class="icon icon-font">&#xe0da;</i>
+                        Tu invitación ha sido confirmada. Bienvenido a la familia Vet Heroes. Pronto estaremos en contacto contigo</div>
+                        <div ng-show="!isInvited" class="tac">
+                        <i class="icon icon-font">&#xe0da;</i>
+                        Tu petición ha sido enviada. Pronto nos contactaremo contigo para confirmate. Muchas gracias por participar y bienvenido a la familia Vet Heroes</div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
         </section>

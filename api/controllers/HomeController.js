@@ -29,19 +29,34 @@ module.exports = {
 	},
 	request: function(req, res){
 		Invites.create(req.body).done(function (err, invite) {
-        if ( err ) {
-					res.json('The request was unsuccesful', 400);
-        }
-        else {
-					res.json(invite, 200);
-        }
-    });
+			if ( err ) {
+				res.json(err, 400);
+			}
+			else {
+				res.json(invite, 200);
+			}
+		});
 	},
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to HomeController)
-   */
-  _config: {}
+	confirm: function(req, res){
+		var id = req.param('id');
+		Invites.findOne(id).done(function(err, invite){
+			invite = _.extend(invite, req.body);
+			invite.status = 2;
+			invite.save(function(err) {
+				if ( err ) {
+					res.json(err, 400);
+				}
+				else {
+					res.json(invite, 200);
+				}
+			});
+		});
+	},
+/**
+ * Overrides for the settings in `config/controllers.js`
+ * (specific to HomeController)
+ */
+ _config: {}
 
 
 };

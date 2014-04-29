@@ -85,13 +85,6 @@ input[type="url"]{
 .button{
 	background: @green;
 }
-.form-row{
-	background: #F1F1F1;
-	padding: 0.9rem 3rem;
-	border-radius: 0.6rem;
-	margin-top: 2rem;
-	border: 1px dashed #DBDBDB;
-}
 #banner{
 	padding: 7rem 0;
 	.column:first-child{
@@ -141,5 +134,27 @@ input[type="url"]{
 		border-radius: 50%;
 		font-size: @sz/2;
 		line-height: @sz;
+	}
+}
+
+.form-row{
+	background: #F1F1F1;
+	padding: 0.9rem 3rem;
+	border-radius: 0.6rem;
+	margin-top: 2rem;
+	border: 1px dashed #DBDBDB;
+	.transition(all .5s ease-out);
+}
+
+.thanks{
+	background: @green;
+	.thanks-msg{
+		font-size: 1.4rem;
+		color: white;
+		i{
+			display: block;
+			color: white;
+			font-size: 4rem;
+		}
 	}
 }

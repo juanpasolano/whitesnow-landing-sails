@@ -1734,13 +1734,6 @@ input[type="url"] {
 .button {
   background: #59c063;
 }
-.form-row {
-  background: #F1F1F1;
-  padding: 0.9rem 3rem;
-  border-radius: 0.6rem;
-  margin-top: 2rem;
-  border: 1px dashed #DBDBDB;
-}
 #banner {
   padding: 7rem 0;
 }
@@ -1791,4 +1784,27 @@ input[type="url"] {
   border-radius: 50%;
   font-size: 3.5rem;
   line-height: 7rem;
+}
+.form-row {
+  background: #F1F1F1;
+  padding: 0.9rem 3rem;
+  border-radius: 0.6rem;
+  margin-top: 2rem;
+  border: 1px dashed #DBDBDB;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+.thanks {
+  background: #59c063;
+}
+.thanks .thanks-msg {
+  font-size: 1.4rem;
+  color: white;
+}
+.thanks .thanks-msg i {
+  display: block;
+  color: white;
+  font-size: 4rem;
 }
