@@ -72,11 +72,36 @@
 
 var ngApp =  angular.module('landing', []);
 
-ngApp.controller('MainCtrl', [ '$scope',
-  function($scope){
-    console.log($('#formEmail').attr('value'));
-    $scope.formData = {
-      name: $('#formEmail').attr('value')
+ngApp.controller('MainCtrl', [ '$scope', '$http',
+  function($scope, $http){
+
+
+    var path = window.location.pathname.split('/');
+    var inviteId = path[2];
+    var inviteToken = path[3];
+    $scope.inviteInfo = {};
+    $scope.isInvited =  false;
+    $scope.formActive =  true;
+
+    if (inviteId) {
+      $http.get('http://localhost:1337/invite/getsafe/'+inviteId+'/'+inviteToken).success(function(data){
+        $scope.inviteInfo = data;
+        $scope.isInvited = true;
+      });
+    }
+
+    $scope.sendForm = function(){
+      if ($scope.isInvited) {
+        console.log($scope.inviteInfo);
+      }else{
+        $http.post('http://localhost:1337/request', $scope.inviteInfo)
+        .success(function(data){
+          $scope.formActive = false;
+        })
+        .error(function(err){
+          console.log(err);
+        });
+      }
     };
   }
 ]);

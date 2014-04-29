@@ -67,50 +67,37 @@
                 <div class="column large-10 medium-10 large-centered medium-centered tac">
                     <h2 class="tac">Cuanto cuesta?</h2>
                     <p>Vet Heroes saldrá al mercado por un precio de aproximadamente <strong>20 dólares al mes</strong>.</p>
-                    <% if(typeof  invite != 'undefined'){%>
-                        <p>Pero <strong>por haber sido invitado</strong> a nuestro pre-lanzamiento. Te daremos <strong>6 meses gratis</strong> de todo nuestros servicios.</p>
-                    <%}else{%>
-                        <p>Pero <strong>si pides una invitacion</strong> podrias tener los primeros <strong>6 meses gratis</strong></p>
-                    <%}%>
+                    <p ng-show="isInvited">Pero <strong>por haber sido invitado</strong> a nuestro pre-lanzamiento. Te daremos <strong>6 meses gratis</strong> de todo nuestros servicios.</p>
+                    <p ng-show="!isInvited">Pero <strong>si pides una invitación</strong> podrias tener los primeros <strong>6 meses gratis</strong></p>
                 </div>
             </div>
             <div class="row">
                 <div class="column large-8 medium-8 large-centered medium-centered form-row">
-                    <% if(typeof  invite != 'undefined'){%>
-                        <h3>Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
-                    <%}else{%>
-                        <h3>Si quieres pedir una invitación por favor llena este pequeño formulario.</h3>
-                    <%}%>
-                    <form action="">
+                    <h3 ng-show="isInvited">Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
+                    <h3 ng-show="!isInvited">Si quieres pedir una invitación por favor llena este pequeño formulario.</h3>
+                    <form action="" ng-submit="sendForm()" ng-show="formActive">
                         <label for="">Nombre de la veterinaria</label>
-                        <input type="text" id="#formName"
-                            value="<%= (typeof invite != 'undefined') ? invite.name : '' %>"
-                        required>
+                        <input type="text" ng-model="inviteInfo.name" required>
 
                         <label for="">Persona de contacto</label>
-                        <input type="text" id="#formContact"
-                            value="<%= (typeof invite != 'undefined') ? invite.contact : '' %>"
-                        required>
+                        <input type="text" ng-model="inviteInfo.contact" required>
 
                         <label for="">E-mail</label>
-                        <input type="email" id="#formEmail"
-                                value="<%= (typeof invite != 'undefined') ? invite.email : '' %>"
-                        required>
+                        <input type="email" ng-model="inviteInfo.email" required>
 
                         <label for="">Teléfono</label>
-                        <input type="number" id="#formTel"
-                            value="<%= (typeof invite != 'undefined') ? invite.tel : '' %>"
-                        required>
+                        <input type="number" ng-model="inviteInfo.tel" required>
 
                         <div class="tac">
-                            <% if(typeof  invite != 'undefined'){%>
-                                <button type="submit" class="button">QUIERO PREINSCRIBIRME!</button>
-                            <%}else{%>
-                                <button type="submit" class="button">QUIERO ESTAR EN LA LISTA!</button>
-                            <%}%>
+                            <button ng-show="isInvited" type="submit" class="button">QUIERO PREINSCRIBIRME!</button>
+                            <button ng-show="!isInvited" type="submit" class="button">QUIERO ESTAR EN LA LISTA!</button>
                             <br><small>* Haciendo click en este botón, estas aceptando nuestras <a href="/terms">Políticas de privacidad</a></small>
                         </div>
                     </form>
+                    <div ng-hide="formActive">
+                        <p ng-show="isInvited">Tu invitación ha sido confirmada. Bienvenido a la familia Vet Heroes. Pronto estaremos en contacto contigo</p>
+                        <p ng-show="!isInvited">Tu petición ha sido enviada. Pronto nos contactaremo contigo para confirmate. Muchas gracias por participar y bienvenido a la familia Vet Heroes</p>
+                    </div>
                 </div>
             </div>
         </section>

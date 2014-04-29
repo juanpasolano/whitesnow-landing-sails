@@ -16,12 +16,26 @@
  */
 
 module.exports = {
-	index: function(req,res){
+	index: function(req, res){
 		var id = req.param('id');
 		var token = req.param('token');
 		Invites.findOne().where({ id: id, token: token }).done(function(err, invite) {
-			res.view('home/index',{invite:invite});
+			if(invite){
+				res.json(invite);
+			}else{
+				res.json('No user was found', 400);
+			}
 		});
+	},
+	request: function(req, res){
+		Invites.create(req.body).done(function (err, invite) {
+        if ( err ) {
+					res.json('The request was unsuccesful', 400);
+        }
+        else {
+					res.json(invite, 200);
+        }
+    });
 	},
   /**
    * Overrides for the settings in `config/controllers.js`
