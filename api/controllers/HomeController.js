@@ -15,11 +15,12 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+
 module.exports = {
 	index: function(req, res){
 		var id = req.param('id');
 		var token = req.param('token');
-		Invites.findOne().where({ id: id, token: token }).done(function(err, invite) {
+        Invites.findOne().where({ id: id, token: token }).done(function(err, invite) {
 			if(invite){
 				res.json(invite);
 			}else{
@@ -33,7 +34,15 @@ module.exports = {
 				res.json(err, 400);
 			}
 			else {
-				res.json(invite, 200);
+				EmailServices.request(invite, function(error, response){
+					if(error){
+						console.log(error);
+						res.send(error);
+					}else{
+						res.send("Message sent: " + response, 200);
+					}
+				});
+				// res.json(invite, 200);
 			}
 		});
 	},

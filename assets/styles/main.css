@@ -1731,6 +1731,9 @@ input[type="url"] {
 .fwb {
   font-weight: bold;
 }
+.p2 {
+  padding: 2rem;
+}
 .button {
   background: #59c063;
 }

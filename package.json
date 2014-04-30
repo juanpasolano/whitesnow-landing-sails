@@ -11,7 +11,8 @@
     "optimist": "0.3.4",
     "sails-mysql": "~0.9.9",
     "bcrypt": "~0.7.7",
-    "random-token": "0.0.8"
+    "random-token": "0.0.8",
+    "nodemailer": "~0.6.3"
   },
   "scripts": {
     "start": "node app.js",
