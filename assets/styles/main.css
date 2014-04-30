@@ -1734,6 +1734,15 @@ input[type="url"] {
 .button {
   background: #59c063;
 }
+.button[disabled] {
+  background: #59c063;
+}
+.button[disabled]:hover {
+  background: #3fa749;
+}
+.button:hover {
+  background: #3fa749;
+}
 #banner {
   padding: 7rem 0;
 }
@@ -1795,6 +1804,15 @@ input[type="url"] {
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
+}
+.form-row label {
+  position: relative;
+}
+.form-row label i {
+  position: absolute;
+  font-size: 2.3rem;
+  top: 1.3rem;
+  right: 0.4rem;
 }
 .thanks {
   background: #59c063;

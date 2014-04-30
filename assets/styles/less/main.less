@@ -84,6 +84,15 @@ input[type="url"]{
 }
 .button{
 	background: @green;
+	&[disabled]{
+		background: @green;
+		&:hover{
+			background: darken(@green, 10%);
+		}
+	}
+	&:hover{
+		background: darken(@green, 10%);
+	}
 }
 #banner{
 	padding: 7rem 0;
@@ -144,6 +153,15 @@ input[type="url"]{
 	margin-top: 2rem;
 	border: 1px dashed #DBDBDB;
 	.transition(all .5s ease-out);
+	label{
+		position: relative;
+		i{
+			position: absolute;
+			font-size: 2.3rem;
+			top: 1.3rem;
+			right: 0.4rem;
+		}
+	}
 }
 
 .thanks{

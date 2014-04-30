@@ -114,3 +114,37 @@ ngApp.controller('MainCtrl', [ '$scope', '$http',
     };
   }
 ]);
+
+/*
+Icon Validation
+Simply puts icon code into element if valid
+
+<i class="ionicons-font" mb-icon-validation="form.name"></i>
+
+* */
+
+ngApp.directive('mbIconValidation',['$rootScope', '$timeout', '$parse',
+  function($rootScope, $timeout, $parse){
+    return{
+      scope:{
+        validationObj: '=mbIconValidation',
+      },
+      link: function(scope, element, attrs){
+        var okIcon = '&#xe0d9;';
+        var failIcon = '&#xe0e0;';
+        scope.$watchCollection('[validationObj.$valid, validationObj.$pristine]', function(n,o){
+          if(scope.validationObj.$valid === true && scope.validationObj.$pristine === false){
+            element.html(okIcon); //Ok icon
+            element.css('color', '#59c063');
+          }else if(scope.validationObj.$valid === false && scope.validationObj.$pristine === false){
+            element.html(failIcon);
+            element.css('color', '#F10C15');
+          }else{
+            element.html('');
+          }
+
+        });
+      }
+    };
+  }
+]);

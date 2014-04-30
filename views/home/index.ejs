@@ -76,22 +76,23 @@
                 <div class="column large-8 medium-8 large-centered medium-centered form-row" ng-class="{thanks : !formActive}">
                     <h3 ng-show="isInvited && formActive" class="tac">Valida tu pre-inscripción ahora y no pierdas esta oportunidad única.</h3>
                     <h3 ng-show="!isInvited && formActive" class="tac">Si quieres pedir una invitación por favor llena este pequeño formulario.</h3>
-                    <form action="" ng-submit="sendForm()" ng-show="formActive">
-                        <label for="">Nombre de la veterinaria</label>
-                        <input type="text" ng-model="inviteInfo.name">
+                    <form action="" name="form" ng-submit="sendForm()" ng-show="formActive">
 
-                        <label for="">Persona de contacto</label>
-                        <input type="text" ng-model="inviteInfo.contact">
+                        <label for="">Nombre de la veterinaria * <i class="icon-font" mb-icon-validation="form.name"></i></label>
+                        <input type="text" name="name" ng-model="inviteInfo.name" required>
 
-                        <label for="">E-mail</label>
-                        <input type="email" ng-model="inviteInfo.email">
+                        <label for="">Persona de contacto * <i class="icon-font" mb-icon-validation="form.contact"></i></label>
+                        <input type="text" name="contact" ng-model="inviteInfo.contact" required>
 
-                        <label for="">Teléfono</label>
-                        <input type="number" ng-model="inviteInfo.tel">
+                        <label for="">E-mail * <i class="icon-font" mb-icon-validation="form.email"></i></label>
+                        <input type="email" name="email" ng-model="inviteInfo.email" required>
+
+                        <label for="">Teléfono * <i class="icon-font" mb-icon-validation="form.tel"></i></label>
+                        <input type="number" name="tel" ng-model="inviteInfo.tel" required>
 
                         <div class="tac">
-                            <button ng-show="isInvited" type="submit" class="button">QUIERO PREINSCRIBIRME!</button>
-                            <button ng-show="!isInvited" type="submit" class="button">QUIERO ESTAR EN LA LISTA!</button>
+                            <button ng-show="isInvited" type="submit" class="button" ng-disabled="form.$invalid">QUIERO PREINSCRIBIRME!</button>
+                            <button ng-show="!isInvited" type="submit" class="button" ng-disabled="form.$invalid">QUIERO ESTAR EN LA LISTA!</button>
                             <br><small>* Haciendo click en este botón, estas aceptando nuestras <a href="/terms">Políticas de privacidad</a></small>
                         </div>
                     </form>
