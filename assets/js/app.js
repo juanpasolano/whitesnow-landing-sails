@@ -72,48 +72,78 @@
 
 var ngApp =  angular.module('landing', []);
 
-ngApp.controller('MainCtrl', [ '$scope', '$http',
-  function($scope, $http){
+ngApp.controller('MainCtrl', [ '$rootScope',
+  function($rootScope) {
 
-
-    var path = window.location.pathname.split('/');
-    var inviteId = path[3];
-    var inviteToken = path[4];
-    $scope.inviteInfo = {};
-    $scope.isInvited =  false;
-    $scope.formActive =  true;
-
-    if (inviteId) {
-      $http.get('http://localhost:1337/invite/getsafe/'+inviteId+'/'+inviteToken).success(function(data){
-        $scope.inviteInfo = data;
-        $scope.isInvited = true;
-        if(data.status == 2){
-          $scope.formActive =  false;
-        }
-      });
-    }
-
-    $scope.sendForm = function(){
-      if ($scope.isInvited) {
-        $http.post('http://localhost:1337/invite/confirm/' + inviteId, $scope.inviteInfo)
-        .success(function(data){
-          $scope.formActive = false;
-        })
-        .error(function(err){
-          console.log(err);
-        });
-      }else{
-        $http.post('http://localhost:1337/invite/request', $scope.inviteInfo)
-        .success(function(data){
-          $scope.formActive = false;
-        })
-        .error(function(err){
-          console.log(err);
-        });
+      var hostname = window.location.hostname;
+      $rootScope.server;
+      if (hostname == 'localhost') {
+          $rootScope.server = 'http://localhost:1337/';
+      } else {
+          $rootScope.server = 'http://vetheroes:1337'
       }
-    };
   }
 ]);
+
+ngApp.controller('LandingCtrl', [ '$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http){
+
+        var path = window.location.pathname.split('/');
+        var inviteId = path[3];
+        var inviteToken = path[4];
+        $scope.inviteInfo = {};
+        $scope.isInvited =  false;
+        $scope.formActive =  true;
+
+        if (inviteId) {
+            $http.get($rootScope.server+'invite/getsafe/'+inviteId+'/'+inviteToken).success(function(data){
+                $scope.inviteInfo = data;
+                $scope.isInvited = true;
+                if(data.status == 2){
+                    $scope.formActive =  false;
+                }
+            });
+        }
+
+        $scope.sendForm = function(){
+            if ($scope.isInvited) {
+                $http.post($rootScope.server+'invite/confirm/' + inviteId, $scope.inviteInfo)
+                    .success(function(data){
+                        $scope.formActive = false;
+                    })
+                    .error(function(err){
+                        console.log(err);
+                    });
+            }else{
+                $scope.inviteInfo.status = 3;
+                $http.post($rootScope.server+'invite/request', $scope.inviteInfo)
+                    .success(function(data){
+                        $scope.formActive = false;
+                    })
+                    .error(function(err){
+                        console.log(err);
+                    });
+            }
+        };
+    }
+]);
+
+ngApp.controller('NewInviteCtrl', [ '$scope', '$rootScope', '$http',
+   function($scope, $rootScope, $http){
+       $scope.inviteInfo = {};
+       $scope.newInvitation = function(){
+           $http.post($rootScope.server+'invites', $scope.inviteInfo)
+               .success(function(data){
+                   alert('Invitacion guardada correctamente');
+               })
+               .error(function(err){
+                   $scope.error = err;
+                   console.log(err);
+           });
+       }
+   } 
+]);
+
 
 /*
 Icon Validation

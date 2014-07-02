@@ -17,7 +17,9 @@
 
 module.exports = {
     
-  
+  new: function(req, res){
+      res.view('invites/new');
+  },
 
 
   /**
