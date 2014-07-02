@@ -20,7 +20,7 @@ module.exports = {
 	index: function(req, res){
 		var id = req.param('id');
 		var token = req.param('token');
-        Invites.findOne().where({ id: id, token: token }).done(function(err, invite) {
+    Invites.findOne().where({ id: id, token: token }).done(function(err, invite) {
 			if(invite){
 				res.json(invite);
 			}else{
