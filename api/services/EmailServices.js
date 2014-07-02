@@ -11,20 +11,12 @@ var getHtml = function(templateName, data) {
 	});
 };
 
-// var smtpTransport = nodemailer.createTransport("SMTP", {
-// 	host: "server.vetheroes.co",
-// 	secureConnection: true,
-// 	port: 465,
-// 	auth: {
-// 		user: "main@vetheroes.co",
-// 		pass: "!Mz*;tDw!b6K"
-// 	}
-// });
-// create reusable transport method (opens pool of SMTP connections)
-var smtpTransport = nodemailer.createTransport("SMTP",{
-	service: "Gmail",
+var smtpTransport = nodemailer.createTransport("SMTP", {
+	host: "server.vetheroes.co", // hostname
+	secureConnection: true, // use SSL
+	port: 465, // port for secure SMTP
 	auth: {
-		user: "vetheroes@gmail.com",
+		user: "main@vetheroes.co",
 		pass: "!Mz*;tDw!b6K"
 	}
 });
@@ -38,7 +30,7 @@ var EmailServices = {
 		var mailOptions = {
 			from: 'Vet Heroes <main@vetheroes.co>',
 			to: data.email,
-			subject: 'Hemos recibido tu solicitud de inscripción',
+			subject: 'Hemos recibido tu inscripción',
 			text: 'Hola',
 			html: html
 		};
