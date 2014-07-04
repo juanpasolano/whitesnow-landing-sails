@@ -106,6 +106,7 @@ ngApp.controller('LandingCtrl', [ '$scope', '$rootScope', '$http',
         }
 
         $scope.sendForm = function(){
+            console.log('sending form');
             if ($scope.isInvited) {
                 $http.post($rootScope.server+'invite/confirm/' + inviteId, $scope.inviteInfo)
                     .success(function(data){
