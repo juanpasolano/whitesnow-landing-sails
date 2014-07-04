@@ -80,7 +80,7 @@ ngApp.controller('MainCtrl', [ '$rootScope',
       if (hostname == 'localhost') {
           $rootScope.server = 'http://localhost:1337/';
       } else {
-          $rootScope.server = 'http://vetheroes:1337'
+          $rootScope.server = 'http://vetheroes:1337/'
       }
   }
 ]);
@@ -111,7 +111,7 @@ ngApp.controller('LandingCtrl', [ '$scope', '$rootScope', '$http',
                 $http.post($rootScope.server+'invite/confirm/' + inviteId, $scope.inviteInfo)
                     .success(function(data){
                         $scope.formActive = false;
-                        ga('send', 'event', 'form', 'submit', 'invite_accepted', 1);
+                        ga('send', 'event', 'form', 'submit', 'invite_confirm', 1);
                     })
                     .error(function(err){
                         console.log(err);
@@ -121,7 +121,7 @@ ngApp.controller('LandingCtrl', [ '$scope', '$rootScope', '$http',
                 $http.post($rootScope.server+'invite/request', $scope.inviteInfo)
                     .success(function(data){
                         $scope.formActive = false;
-                        ga('send', 'event', 'form', 'submit', 'invite_requested', 1);
+                        ga('send', 'event', 'form', 'submit', 'invite_request', 1);
                     })
                     .error(function(err){
                         console.log(err);
