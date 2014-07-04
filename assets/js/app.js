@@ -110,6 +110,7 @@ ngApp.controller('LandingCtrl', [ '$scope', '$rootScope', '$http',
                 $http.post($rootScope.server+'invite/confirm/' + inviteId, $scope.inviteInfo)
                     .success(function(data){
                         $scope.formActive = false;
+                        ga('send', 'event', 'form', 'submit', 'invite_accepted', 1);
                     })
                     .error(function(err){
                         console.log(err);
@@ -119,6 +120,7 @@ ngApp.controller('LandingCtrl', [ '$scope', '$rootScope', '$http',
                 $http.post($rootScope.server+'invite/request', $scope.inviteInfo)
                     .success(function(data){
                         $scope.formActive = false;
+                        ga('send', 'event', 'form', 'submit', 'invite_requested', 1);
                     })
                     .error(function(err){
                         console.log(err);
