@@ -80,7 +80,7 @@ ngApp.controller('MainCtrl', [ '$rootScope',
       if (hostname == 'localhost') {
           $rootScope.server = 'http://localhost:1337/';
       } else {
-          $rootScope.server = 'http://vetheroes:1337/'
+          $rootScope.server = 'http://vetheroes.co:1337/'
       }
   }
 ]);
