@@ -86,7 +86,9 @@ input[type="url"]{
 	padding: 2rem;
 }
 .button{
+  font-family:@ff ;
 	background: @green;
+  border-radius: 70px;
 	&[disabled]{
 		background: @green;
 		&:hover{
@@ -96,6 +98,9 @@ input[type="url"]{
 	&:hover{
 		background: darken(@green, 10%);
 	}
+    &:focus{
+      background-color: darken(@green, 10%);
+    }
 }
 #banner{
 	padding: 7rem 0;

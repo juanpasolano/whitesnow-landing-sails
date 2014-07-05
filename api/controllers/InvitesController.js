@@ -20,6 +20,19 @@ module.exports = {
   new: function(req, res){
       res.view('invites/new');
   },
+  compose: function(req, res){
+    res.view('invites/compose')
+  },
+  send:function(req, res){
+      var invite = req.body;
+      EmailServices.invite(invite, function(error, response){
+          if(error){
+              res.send(error);
+          }else{
+              res.send("Message sent: " + response, 200);
+          }
+      });
+  },
 
 
   /**

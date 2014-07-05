@@ -24,7 +24,7 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
 
 var EmailServices = {
 	request: function(data, callback){
-    var html = getHtml('request', data);
+        var html = getHtml('request', data);
 
 		// setup e-mail data with unicode symbols
 		var mailOptions = {
@@ -37,7 +37,23 @@ var EmailServices = {
 
 		// send mail with defined transport object
 		smtpTransport.sendMail(mailOptions, callback);
-	}
+	},
+    invite: function(data, callback){
+
+        var html = getHtml('invite', data);
+
+        // setup e-mail data with unicode symbols
+        var mailOptions = {
+            from: 'Vet Heroes <main@vetheroes.co>',
+            to: data.email,
+            subject: 'Invitación privada a vetheroes.co',
+            text: 'Hola',
+            html: html
+        };
+
+        // send mail with defined transport object
+        smtpTransport.sendMail(mailOptions, callback);
+    }
 };
 
 module.exports = EmailServices;

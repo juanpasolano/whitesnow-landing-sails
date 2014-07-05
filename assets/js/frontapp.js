@@ -147,6 +147,27 @@ ngApp.controller('NewInviteCtrl', [ '$scope', '$rootScope', '$http',
    } 
 ]);
 
+ngApp.controller('SendInviteCtrl', [ '$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http){
+
+        $http.get($rootScope.server+'invites').success(function(data){
+            $scope.invites =  data;
+        });
+        $scope.sendInvite =  function(invite){
+
+            $http.post($rootScope.server+'invites/send', invite)
+                .success(function(data){
+                    alert(data);
+                    console.log(data);
+                })
+                .error(function(err){
+                    console.log(err);
+                });
+        }
+    }
+])
+
+
 
 /*
 Icon Validation
