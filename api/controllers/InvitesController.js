@@ -18,6 +18,7 @@
 module.exports = {
     
   new: function(req, res){
+    console.log(sails.config.email);
       res.view('invites/new');
   },
   compose: function(req, res){

@@ -1,6 +1,7 @@
 
 var nodemailer = require("nodemailer");
 var fs =  require('fs');
+var config =  require('../../config/local');
 
 var getHtml = function(templateName, data) {
 	var encoding, templateContent, templatePath;
@@ -16,8 +17,8 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
 	secureConnection: true, // use SSL
 	port: 465, // port for secure SMTP
 	auth: {
-		user: "main@vetheroes.co",
-		pass: "!Mz*;tDw!b6K"
+		user: config.email.user,
+		pass: config.email.pass
 	}
 });
 
