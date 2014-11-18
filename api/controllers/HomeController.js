@@ -34,14 +34,20 @@ module.exports = {
 				res.json(err, 400);
 			}
 			else {
-				EmailServices.request(invite, function(error, response){
-					if(error){
-						res.send(error);
-					}else{
-						res.send("Message sent: " + response, 200);
-					}
-				});
-				// res.json(invite, 200);
+        /**
+        Commented because error:
+        ReferenceError: contact is not defined
+        at eval (eval at template (/home/vetheroe/public_html/landing/whitesnow-landing-sails/node_modules/sails/node_modules/lodash/dist/lodash.js:6305:22), <anonymous>:7:10)
+        at Function.template (/home/vetheroe/public_html/landing/whitesnow-landing-sails/node_modules/sails/node_modules/lodash/dist/lodash.js:6311:16)
+          */
+//				EmailServices.request(invite, function(error, response){
+//					if(error){
+//						res.send(error);
+//					}else{
+//						res.send("Message sent: " + response, 200);
+//					}
+//				});
+				res.json(invite, 200);
 			}
 		});
 	},
