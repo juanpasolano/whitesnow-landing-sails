@@ -11,8 +11,7 @@ module.exports = {
     attributes: {
 
         name: {
-            type: 'STRING',
-            required: true
+            type: 'STRING'
         },
         contact: {
             type: 'STRING'
