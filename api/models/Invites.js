@@ -31,6 +31,8 @@ module.exports = {
         var randomToken = require('random-token');
         attrs.token = randomToken(16);
 
+        attrs.name = attrs.name || '';
+
         //if isInvited is not specified, put 0
         if (!attrs.status) {
             attrs.status = 1; //this status means the user has requested an invite
